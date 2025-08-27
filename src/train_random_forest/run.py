@@ -164,7 +164,7 @@ def get_inference_pipeline(rf_config, max_tfidf_features):
     # 2 - A OneHotEncoder() step to encode the variable
     non_ordinal_categorical_preproc = make_pipeline(
         SimpleImputer(strategy='most_frequent'),
-        OneHotEncoder(handle_unkwon='ignore')
+        OneHotEncoder(handle_unknown='ignore')
     )
     ######################################
 
@@ -226,10 +226,11 @@ def get_inference_pipeline(rf_config, max_tfidf_features):
     # HINT: Use the explicit Pipeline constructor so you can assign the names to the steps, do not use make_pipeline
 
     sk_pipe = Pipeline(
-        steps =[
-        # YOUR CODE HERE
-        ]
-    )
+        steps = [
+            ("preprocessor", preprocessor),
+            ("random_forest", random_forest)
+            ]
+            )
 
     return sk_pipe, processed_features
     ######################################
